@@ -2,58 +2,31 @@ import React, { useState } from "react";
 import Formulario from "./componentes/Formulario";
 import PersonCard from "./componentes/PersonCard";
 import PersonCardFuncional from "./componentes/PersonCardFuncional";
+import DogApi from "./componentes/DogApi";
+import ContenedorPersonas from "./componentes/ContenedorPersonas";
+import {Routes, Route, Link} from "react-router-dom";
+import Ciudad from "./componentes/Ciudad";
 
 
 const App = () => {
 
-  const [listado, setListado] = useState([
-    {
-      nombre: "Pedro",
-      apellido: "Paramo",
-      edad: 32,
-      ciudad: "Comala"
-    },
-    {
-      nombre: "Pablo",
-      apellido: "Picasso",
-      edad: 50,
-      ciudad: "Paris"
-    },
-    {
-      nombre: "Juan",
-      apellido: "Perez",
-      edad: 20,
-      ciudad: "Mexico"
-    }
-  ]);
+  
 
   return (
     <div className="App">
-      <PersonCard firstName="Elena"
-        lastName="De Troya" age={18}
-        hairColor="Black" />
+      <Link to={"/"} className="btn btn-primary">Home</Link>
+      <Link to={"/personas"}className="btn btn-success">Personas</Link>
+      <Link to={"/formulario"} class="btn btn-info">Formulario</Link>
+      <Link to={"/dogapi"} class="btn btn-dark">DogApi</Link>
+      <Link to={"/ciudad/Monterrey"} className="btn btn-danger">Ciudad de Mty</Link>
+      <Link to={"/ciudad/Cusco"} className="btn btn-danger">Ciudad de Cusco</Link>
 
-      <PersonCard firstName="Juana"
-        lastName="De Arco" age={20}
-        hairColor="Brown" />
-
-      <PersonCard firstName="Pedro"
-        lastName="Paramo" age={32}
-        hairColor="Blonde" />
-
-      <PersonCard firstName="Pablo"
-        lastName="Picasso" age={50}
-        hairColor="White" />
-
-      {
-        listado.map(persona =>
-          <PersonCardFuncional firstName={persona.nombre} lastName={persona.apellido} age={persona.edad} hairColor="negro" />
-        )
-      }
-
-      <PersonCardFuncional firstName="Elena" lastName="De Troya" age={18} hairColor="Black"  />
-
-      <Formulario />
+      <Routes>
+        <Route path="/formulario" element={<Formulario/>}/>
+        <Route path="/dogapi" element={<DogApi/>} />
+        <Route path="/personas" element={<ContenedorPersonas/>}/>
+        <Route path="/ciudad/:city" element={<Ciudad/>}/>
+      </Routes>
 
     </div>
   );

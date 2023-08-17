@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { useNavigate } from "react-router-dom";
 
 const Formulario = () => {
 
@@ -8,6 +9,8 @@ const Formulario = () => {
     const[edad, setEdad] = useState("");
     const[color, setColor] = useState("");
     const[hizoSubmit, setHizoSubmit] = useState(false);
+
+    const navigate = useNavigate();
 
     const [errorNombre,setErrorNombre] = useState(""); //variable en la cual colocaría la validación de nombre
     const [errorEdad, setErrorEdad] = useState("");
@@ -21,6 +24,7 @@ const Formulario = () => {
         setEdad("");
         setColor("");
         setHizoSubmit(true);
+        navigate("/personas");
     }
 
     const validarNombre = e =>{
@@ -40,26 +44,6 @@ const Formulario = () => {
             setErrorEdad("");
         }
     }
-    
-    /*esto sirve para tarea la parte de comparar las contraseñas 
-    const validarApellido1 = e =>{
-        setApellido1(e.target.value);
-        if(apellido1 !== apellido2) {
-            //aqui el error
-        }
-        if(apellido1.length <8){
-            //aqui el error
-        }
-    }
-
-    const validarApellido2 = e =>{
-        setApellido2(e.target.value);
-        if(apellido1 !== apellido2) {
-            //aqui el error
-        }
-        if(apellido2.length <8){
-            //aqui el error
-        }*/
 
     return(
         <form onSubmit= {crearUsuario}>
