@@ -27,27 +27,6 @@ const ContenedorPersonas = () => {
 
     return (
         <div>
-            <PersonCard firstName="Elena"
-                lastName="De Troya" age={18}
-                hairColor="Black" />
-
-            <PersonCard firstName="Juana"
-                lastName="De Arco" age={20}
-                hairColor="Brown" />
-
-            <PersonCard firstName="Pedro"
-                lastName="Paramo" age={32}
-                hairColor="Blonde" />
-
-            <PersonCard firstName="Pablo"
-                lastName="Picasso" age={50}
-                hairColor="White" />
-
-{
-                listado.map(persona =>
-                    <PersonCardFuncional firstName={persona.nombre} lastName={persona.apellido} age={persona.edad} hairColor="negro" />
-                )
-            }
             <PersonCard nombre="Juana" apellido="De Arco" edad={18} ciudad="Paris" />
             <PersonCard nombre="Elena" apellido="De Troya" edad={30} ciudad="Roma" />
             {

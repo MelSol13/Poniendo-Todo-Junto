@@ -1,32 +1,38 @@
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 
-const PersonCardFuncional = ({firstName, lastName, age, hairColor}) => {
+const PersonCardFuncional = ({nombre, apellido, edad, ciudad}) => {
 
-    const [edoCivil,setEdoCivil]= useState("Casado"); //crea variable y me crea una funcion para alterar
+//[nombreVariable, funcionParaCambiar]
+    const [edoCivil, setEdoCivil] = useState("Casado"); //crea variable y me crea una función para alterar
 
-    //se ejecuta al momento de cargar mi componente
-    useEffect( () =>{
+    //Se ejecuta al momento de cargar mi componente
+    useEffect(()=> {
         console.log("Renderizamos el contenido");
     }, [])
 
-    useEffect(() =>{
+    useEffect(()=> {
         console.log("Hicimos un cambio");
     }, [edoCivil])
 
     const cambiarEdoCivil = () => {
-        if(edoCivil === "Casado"){
+        if(edoCivil ==="Casado") {
             setEdoCivil("Soltero");
-        }else{
+        } else {
             setEdoCivil("Casado");
         }
     }
 
-    return(
+    /*  props.nombre = "Pedro"
+        props.apellido = "Paramo"
+        props.edad = 32
+        props.ciudad = "Comala"*/
+
+    return (
         <div>
-            <h2>{firstName} {lastName}</h2>
-            <p>Age:{age}</p>
-            <p>HairColor{hairColor}</p>
-            <p>Edo Civil:{edoCivil}</p>
+            <h2>{nombre} {apellido}</h2>
+            <p>Edad: {edad}</p>
+            <p>Ciudad: {ciudad}</p>
+            <p>Edo Civil: {edoCivil}</p>
             <button className="btn btn-info" onClick={cambiarEdoCivil}>Cambiar Edo</button>
         </div>
     )
