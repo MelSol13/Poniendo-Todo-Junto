@@ -43,7 +43,7 @@ const ContenedorPersonas = () => {
                 lastName="Picasso" age={50}
                 hairColor="White" />
 
-            {
+{
                 listado.map(persona =>
                     <PersonCardFuncional firstName={persona.nombre} lastName={persona.apellido} age={persona.edad} hairColor="negro" />
                 )

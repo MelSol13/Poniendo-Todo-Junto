@@ -1,37 +1,34 @@
 import React, {useState} from "react";
-import { useNavigate } from "react-router-dom";
 
 const Formulario = () => {
 
     const [nombre, setNombre] = useState("");
-    const[apellido, setApellido] = useState("");
-    //const[apellido2, setApellido2] = useState("");
-    const[edad, setEdad] = useState("");
-    const[color, setColor] = useState("");
-    const[hizoSubmit, setHizoSubmit] = useState(false);
+    const [apellido, setApellido] = useState("");
+    const [edad, setEdad] = useState("");
+    const [color, setColor] = useState("");
+    const [hizoSubmit, setHizoSubmit] = useState(false);
 
-    const navigate = useNavigate();
-
-    const [errorNombre,setErrorNombre] = useState(""); //variable en la cual colocaría la validación de nombre
+    //Variable en la cual colocaría la validación de Nombre
+    const [errorNombre, setErrorNombre] = useState(""); 
     const [errorEdad, setErrorEdad] = useState("");
+
 
     const crearUsuario = (e) => {
         e.preventDefault();
-        const nuevoUsuario = {nombre, apellido, edad, color}; //creamos objeto
+        const nuevoUsuario = {nombre, apellido, edad, color}; //Creamos objeto
         console.log(nuevoUsuario);
-        setNombre("");//vacíos para que se regrese a estar vacío
+        setNombre("");
         setApellido("");
         setEdad("");
         setColor("");
         setHizoSubmit(true);
-        navigate("/personas");
     }
 
-    const validarNombre = e =>{
+    const validarNombre = e => {
         setNombre(e.target.value);
         if(nombre.length < 3) {
             setErrorNombre("El nombre debe tener al menos 3 caracteres");
-        } else{
+        } else {
             setErrorNombre("");
         }
     }
@@ -40,42 +37,44 @@ const Formulario = () => {
         setEdad(e.target.valueAsNumber);
         if(e.target.valueAsNumber < 18) {
             setErrorEdad("Se debe ser mayor de edad.");
-        } else{
+        } else {
             setErrorEdad("");
         }
     }
 
     return(
-        <form onSubmit= {crearUsuario}>
+        <form onSubmit={crearUsuario}>
             <h2>Crear Usuario</h2>
             <h5>
-                {hizoSubmit ? "¡Gracias por ingresar tus datos" : "Favor de ingresar tus datos"} 
+                {hizoSubmit ? "¡Gracias por ingresar tus datos!" : "Favor de ingresar los datos" }
             </h5>
             <div>
                 <label>Nombre:</label>
-                <input className="form-control" onChange={validarNombre} value={nombre}></input>
+                <input className="form-control" onChange={ validarNombre } value={nombre} />
+
                 {
                     errorNombre && <p className="text-danger">{errorNombre}</p>
                 }
+
             </div>
             <div>
                 <label>Apellido:</label>
-                <input className="form-control" onChange={e => setApellido(e.target.value)} value={apellido}></input>
+                <input className="form-control" onChange={ e => setApellido(e.target.value) } value={apellido} />
             </div>
             <div>
                 <label>Edad:</label>
-                <input type="number" className="form-control" onChange={validarEdad} value={edad}></input>
+                <input type="number" className="form-control" onChange={ validarEdad } value={edad} />
                 {
                     errorEdad && <p className="text-danger">{errorEdad}</p>
                 }
             </div>
             <div>
                 <label>Color de Cabello:</label>
-                <input className="form-control"onChange={e => setColor(e.target.value)} value={color}></input>
+                <input className="form-control" onChange={ e => setColor(e.target.value) } value={color} />
             </div>
-            <input type="submit" className="btn btn-success" value="Crear Usuario"></input>
+            <input type="submit" className="btn btn-success" value="Crear Usuario" />
+            <p>Nombre: {nombre}</p>
         </form>
     )
 }
-
 export default Formulario;
